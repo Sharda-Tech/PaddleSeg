@@ -122,6 +122,7 @@ class Predictor:
         return self.postprocess(output, img, data, bg)
 
     def postprocess(self, pred_img, origin_img, data, bg):
+        print("Predicted Image", pred_img.shape, pred_img.dtype)
         trans_info = data['trans_info']
         score_map = pred_img[0, 1, :, :]
 
@@ -161,4 +162,4 @@ class Predictor:
             bg = bg[..., np.newaxis]
 
         out = (alpha * origin_img + (1 - alpha) * bg).astype(np.uint8)
-        return out
+        return out,alpha

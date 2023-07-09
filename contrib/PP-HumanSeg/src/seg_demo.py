@@ -97,7 +97,7 @@ def seg_image(args):
     logger.info("Start predicting...")
     img = cv2.imread(args.img_path)
     bg_img = get_bg_img(args.bg_img_path, img.shape)
-    out_img = predictor.run(img, bg_img)
+    out_img, mask = predictor.run(img, bg_img)
     cv2.imwrite(args.save_dir, out_img)
 
 
